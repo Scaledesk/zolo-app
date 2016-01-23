@@ -1,0 +1,76 @@
+<!--View Information-->
+<!--View name : Device Mobile Contract List-->
+<!--Controller name : mobileContractListCtrl-->
+<!--Controller path : www/templates/hardware-connect/mobile-contract/js/controllers.js-->
+<!--State name : app.mobileContractList-->
+<!--URL : #app/mobileContractList-->
+
+<ion-view view-title="">
+    <!--right button on navigation bar-->
+    <ion-nav-buttons side="right">
+        <md-button class="md-icon-button ion-nav-button-right" ng-click="goToSetting()"
+                   aria-label="Setting">
+            <i class="ion-android-more-vertical"></i>
+        </md-button>
+    </ion-nav-buttons> <!--end right button on navigation bar-->
+    <!--toolbar section-->
+    <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">
+        <div>
+            <h1>ZOLO</h1>
+
+
+            <md-input-container md-no-float="">
+                <input ng-model="filterText" id="name_2" placeholder="Search for ZOLO.">
+            </md-input-container>
+
+        </div>
+        <a class="md-button md-accent md-fab fab-toolbar-medium"
+           ng-click="navigateTo('app.mobileContractDetail')"
+           aria-label="Add">
+            <i class="icon ion-plus"></i>
+        </a>
+    </md-toolbar> <!--end toolbar section-->
+
+    <!--mobile contract list section-->
+    <ion-content id="slide-catalog-content">
+
+        <!--toolbar section-->
+        <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+            <div>
+                <h1>SALE 40% OFF</h1>
+
+                <h2>Order Now !!</h2>
+
+                <h2>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </h2>
+            </div>
+        </md-toolbar><!--end toolbar section-->
+
+        <div class="pin" ng-repeat="package in packages" ng-click="showConfirmDialog($event)">
+            <img src="{{package.first_photo}}"/>
+
+            <h1>{{package.name}}</h1>
+
+            <p>
+                By :{{package.seller_name}}
+            </p>
+
+            <div class="pin-footer">
+                $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+            </div>
+        </div><!--end pin section-->
+    </ion-content><!--end cloth shop section-->
+
+    <!--loading progress-->
+    <!--<div id="mobile-contract-list-loading-progress" class="loading-progress fade-in">
+        <ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>
+        <md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>
+    </div>--><!--end loading progress-->
+
+</ion-view>

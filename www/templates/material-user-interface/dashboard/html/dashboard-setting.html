@@ -1,0 +1,31 @@
+<!--View Information-->
+<!--View name : Dashboard Setting-->
+<!--Controller name : dashboardSettingCtrl-->
+<!--Controller path : www/templates/material-user-interface/dashboard/js/controllers.js-->
+<!--State name : app.dashboardSetting-->
+<!--URL : #app/dashboardSetting-->
+
+<ion-view title="My Account">
+    <!--$ionicGoBack()-->
+    <!--left button on navigation bar-->
+    <ion-nav-buttons side="left">
+        <a ng-click="goto('app.packages')" class="button back-button buttons  button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back "></i>
+        </a>
+    </ion-nav-buttons><!--end left button on navigation bar-->
+
+    <ion-content scroll="false">
+        <!--list section-->
+        <md-list>
+            <md-list-item class="md-list-item-default" ng-click="navigateTo('app.signIn',true)">
+                <p>Sign In</p>
+            </md-list-item>
+          <!--  <md-list-item class="md-list-item-default" ng-click="navigateTo('app.dashboard',false)">
+                <p>Register</p>
+            </md-list-item>-->
+        <!--    <md-list-item class="md-list-item-default" ng-click="navigateTo('app.packages',true)">
+                <p>packages</p>
+            </md-list-item>-->
+        </md-list><!--end list section-->
+    </ion-content>
+</ion-view>
