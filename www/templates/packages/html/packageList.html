@@ -6,21 +6,14 @@
 <!--URL : #app/mobileContractList-->
 
 <ion-view view-title="">
-    <!--right button on navigation bar-->
-    <ion-nav-buttons side="right">
-        <md-button class="md-icon-button ion-nav-button-right" ng-click="goToSetting()"
-                   aria-label="Setting">
-            <i class="ion-android-more-vertical"></i>
-        </md-button>
-    </ion-nav-buttons> <!--end right button on navigation bar-->
+
     <!--toolbar section-->
     <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">
         <div>
             <h1>ZOLO</h1>
 
-
             <md-input-container md-no-float="">
-                <input ng-model="filterText" id="name_2" placeholder="Search for ZOLO.">
+                <input ng-model="filterText" id="name_2" placeholder="Search for contacts.">
             </md-input-container>
 
         </div>
@@ -32,7 +25,7 @@
     </md-toolbar> <!--end toolbar section-->
 
     <!--mobile contract list section-->
-    <ion-content id="slide-catalog-content">
+    <ion-content id="cloth-shop-content">
 
         <!--toolbar section-->
         <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
@@ -51,26 +44,49 @@
             </div>
         </md-toolbar><!--end toolbar section-->
 
-        <div class="pin" ng-repeat="package in packages" ng-click="showConfirmDialog($event)">
-            <img src="{{package.first_photo}}"/>
+        <!--product list content-->
+        <div id="product-list" class="row">
 
-            <h1>{{package.name}}</h1>
+            <div class="col">
+                <div class="pin" ng-repeat="package in first_packages_row" ng-click="showConfirmDialog($event)">
+                    <img src="{{package.first_photo}}"/>
 
-            <p>
-                By :{{package.seller_name}}
-            </p>
+                    <h1>{{package.name}}</h1>
 
-            <div class="pin-footer">
-                $<span class="pin-footer text-left font-sale">{{package.price}}</span>
-                <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                    <p>
+                        By :{{package.seller_name}}
+                    </p>
+
+                    <div class="pin-footer">
+                        $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                    </div>
+                </div><!--end pin section-->
             </div>
-        </div><!--end pin section-->
+
+            <div class="col">
+                <div class="pin" ng-repeat="package in second_packages_row" ng-click="showConfirmDialog($event)">
+                    <img src="{{package.first_photo}}"/>
+
+                    <h1>{{package.name}}</h1>
+
+                    <p>
+                        By :{{package.seller_name}}
+                    </p>
+
+                    <div class="pin-footer">
+                        $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                    </div>
+                </div><!--end pin section-->
+            </div>
+        </div><!--end product list content-->
     </ion-content><!--end cloth shop section-->
 
     <!--loading progress-->
-    <!--<div id="mobile-contract-list-loading-progress" class="loading-progress fade-in">
+    <div id="mobile-contract-list-loading-progress" class="loading-progress fade-in">
         <ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>
         <md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>
-    </div>--><!--end loading progress-->
+    </div><!--end loading progress-->
 
 </ion-view>
