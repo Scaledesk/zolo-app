@@ -44,20 +44,45 @@
                 </h2>
             </div>
         </md-toolbar><!--end toolbar section-->
-        <div class="pin" ng-repeat="package in category.data.Packages.data" ng-click="showConfirmDialog($event)">
-            <img src="{{package.first_photo}}"/>
+        <div id="product-list" class="row">
 
-            <h1>{{package.name}}</h1>
+            <div class="col" ng-if="first_packages_row.length!=0">
+                <div class="pin" ng-repeat="package in first_packages_row" ng-click="showConfirmDialog($event)">
+                    <img src="{{package.first_photo}}"/>
 
-            <p>
-                By :{{package.seller_name}}
-            </p>
+                    <h1>{{package.name}}</h1>
 
-            <div class="pin-footer">
-                $<span class="pin-footer text-left font-sale">{{package.price}}</span>
-                <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                    <p>
+                        By :{{package.seller_name}}
+                    </p>
+
+                    <div class="pin-footer">
+                        $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                    </div>
+                </div><!--end pin section-->
             </div>
-        </div><!--end pin section-->
+
+            <div class="col" ng-if="second_packages_row.length!=0">
+                <div class="pin" ng-repeat="package in second_packages_row" ng-click="showConfirmDialog($event)">
+                    <img src="{{package.first_photo}}"/>
+
+                    <h1>{{package.name}}</h1>
+
+                    <p>
+                        By :{{package.seller_name}}
+                    </p>
+
+                    <div class="pin-footer">
+                        $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                    </div>
+                </div><!--end pin section-->
+            </div>
+            <div class="col" ng-if="second_packages_row.length===0&&first_packages_row.length===0">
+            <h1 align="center">Currently! No Packages in this Category</h1>
+            </div>
+        </div><!--end product list content-->
     </ion-content><!--end cloth shop section-->
 
     <!--loading progress-->

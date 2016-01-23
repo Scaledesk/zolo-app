@@ -38,5 +38,15 @@ appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUti
         $scope.category={};
         $scope.category.data = data.data.data;
         console.log($scope.category.data.Packages);
+        packages_length=$scope.category.data.Packages.data.length;
+        $scope.packages=$scope.category.data.Packages.data;
+        delete $scope.category.data.Packages;
+        break_length=packages_length!=1? packages_length/2 : packages_length;
+        delete packages_length;
+        $scope.first_packages_row = $scope.packages.slice(0, break_length);
+        $scope.second_packages_row = $scope.packages.slice(break_length + 1);
+        delete $scope.packages;
+        delete break_length;
+
     });
 }); // End of menu toggle controller.
