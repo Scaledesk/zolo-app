@@ -1,3 +1,96 @@
+<!--<ion-view view-title="">-->
+    <!--<ion-nav-buttons side="right">-->
+        <!--<a ng-click="goToSetting()" class="button back-button buttons button-clear header-item nav-back-btn">-->
+            <!--<i class="ion-android-more-vertical"></i>-->
+        <!--</a>-->
+    <!--</ion-nav-buttons>&lt;!&ndash;end left button on navigation bar&ndash;&gt;-->
+    <!--&lt;!&ndash;toolbar section&ndash;&gt;-->
+    <!--<md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">-->
+        <!--<div>-->
+            <!--<h1>ZOLO</h1>-->
+            <!--<h2 ng-if="category.data.name">{{category.data.name}}</h2>-->
+
+            <!--<md-input-container md-no-float="">-->
+                <!--<input ng-model="filterText" id="name_2" placeholder="Search for ZOLO.">-->
+            <!--</md-input-container>-->
+
+        <!--</div>-->
+        <!--<a class="md-button md-accent md-fab fab-toolbar-medium"-->
+           <!--ng-click="navigateTo('app.mobileContractDetail')"-->
+           <!--aria-label="Add">-->
+            <!--<i class="icon ion-plus"></i>-->
+        <!--</a>-->
+    <!--</md-toolbar> &lt;!&ndash;end toolbar section&ndash;&gt;-->
+
+    <!--&lt;!&ndash;mobile contract list section&ndash;&gt;-->
+    <!--<ion-content id="slide-catalog-content">-->
+
+        <!--&lt;!&ndash;toolbar section&ndash;&gt;-->
+        <!--<md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">-->
+            <!--<div>-->
+                <!--<h1>SALE 40% OFF</h1>-->
+
+                <!--<h2>Order Now !!</h2>-->
+
+                <!--<h2>-->
+                    <!--<i class="fa fa-star"></i>-->
+                    <!--<i class="fa fa-star"></i>-->
+                    <!--<i class="fa fa-star"></i>-->
+                    <!--<i class="fa fa-star"></i>-->
+                    <!--<i class="fa fa-star"></i>-->
+                <!--</h2>-->
+            <!--</div>-->
+        <!--</md-toolbar>&lt;!&ndash;end toolbar section&ndash;&gt;-->
+        <!--<div id="product-list" class="row">-->
+
+            <!--<div class="col" ng-if="first_packages_row.length!=0">-->
+                <!--<div class="pin" ng-repeat="package in first_packages_row" ng-click="navigateTo('app.packageDisplay',package.id,category.data.id)">-->
+                    <!--<img src="{{package.first_photo}}"/>-->
+
+                    <!--<h1>{{package.name}}</h1>-->
+
+                    <!--<p>-->
+                        <!--By :{{package.seller_name}}-->
+                    <!--</p>-->
+
+                    <!--<div class="pin-footer">-->
+                        <!--$<span class="pin-footer text-left font-sale">{{package.price}}</span>-->
+                        <!--<span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash;end pin section&ndash;&gt;-->
+            <!--</div>-->
+
+            <!--<div class="col" ng-if="second_packages_row.length!=0">-->
+                <!--<div class="pin" ng-repeat="package in second_packages_row" ng-click="navigateTo('app.packageDisplay',package.id,category.data.id)">-->
+                    <!--<img src="{{package.first_photo}}"/>-->
+
+                    <!--<h1>{{package.name}}</h1>-->
+
+                    <!--<p>-->
+                        <!--By :{{package.seller_name}}-->
+                    <!--</p>-->
+
+                    <!--<div class="pin-footer">-->
+                        <!--$<span class="pin-footer text-left font-sale">{{package.price}}</span>-->
+                        <!--<span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash;end pin section&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="col" ng-if="second_packages_row.length===0&&first_packages_row.length===0">-->
+            <!--<h1 align="center">Currently! No Packages in this Category</h1>-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash;end product list content&ndash;&gt;-->
+    <!--</ion-content>&lt;!&ndash;end cloth shop section&ndash;&gt;-->
+
+    <!--&lt;!&ndash;loading progress&ndash;&gt;-->
+    <!--&lt;!&ndash;<div id="mobile-contract-list-loading-progress" class="loading-progress fade-in">-->
+        <!--<ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>-->
+        <!--<md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>-->
+    <!--</div>&ndash;&gt;&lt;!&ndash;end loading progress&ndash;&gt;-->
+
+<!--</ion-view>-->
+
+
 <!--View Information-->
 <!--View name : Device Mobile Contract List-->
 <!--Controller name : mobileContractListCtrl-->
@@ -18,7 +111,7 @@
             <h2 ng-if="category.data.name">{{category.data.name}}</h2>
 
             <md-input-container md-no-float="">
-                <input ng-model="filterText" id="name_2" placeholder="Search for ZOLO.">
+                <input ng-model="filterText" id="name_2" placeholder="Search for contacts.">
             </md-input-container>
 
         </div>
@@ -30,7 +123,7 @@
     </md-toolbar> <!--end toolbar section-->
 
     <!--mobile contract list section-->
-    <ion-content id="slide-catalog-content">
+    <ion-content id="cloth-shop-content">
 
         <!--toolbar section-->
         <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
@@ -48,10 +141,12 @@
                 </h2>
             </div>
         </md-toolbar><!--end toolbar section-->
-        <div id="product-list" class="row">
 
+        <!--product list content-->
+        <div id="product-list" class="row">
+            <!--style="margin-right: 8%;"-->
             <div class="col" ng-if="first_packages_row.length!=0">
-                <div class="pin" ng-repeat="package in first_packages_row" ng-click="navigateTo('app.packageDisplay',package.id,category.data.id)">
+                <div class="pin" ng-repeat="package in first_packages_row" ng-click="navigateTo('app.packageDisplay',package.id,category.data.id)"><!--end pin section-->
                     <img src="{{package.first_photo}}"/>
 
                     <h1>{{package.name}}</h1>
@@ -64,7 +159,6 @@
                         $<span class="pin-footer text-left font-sale">{{package.price}}</span>
                         <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
                     </div>
-                </div><!--end pin section-->
             </div>
 
             <div class="col" ng-if="second_packages_row.length!=0">
@@ -83,16 +177,13 @@
                     </div>
                 </div><!--end pin section-->
             </div>
-            <div class="col" ng-if="second_packages_row.length===0&&first_packages_row.length===0">
-            <h1 align="center">Currently! No Packages in this Category</h1>
-            </div>
         </div><!--end product list content-->
     </ion-content><!--end cloth shop section-->
 
     <!--loading progress-->
-    <!--<div id="mobile-contract-list-loading-progress" class="loading-progress fade-in">
+    <div id="mobile-contract-list-loading-progress" class="loading-progress fade-in">
         <ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>
         <md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>
-    </div>--><!--end loading progress-->
+    </div><!--end loading progress-->
 
 </ion-view>
