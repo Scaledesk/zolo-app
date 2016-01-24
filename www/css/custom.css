@@ -27,6 +27,15 @@
     height: 62px;
     margin-bottom: 2px;
 }
+.bg-sign{
+    background:url("../img/sign-in-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.md-input{
+    color:white !important;
+}
 #toggle-menu-right-header div.menu-right-header p {
     font-weight: bolder; }
 #toggle-menu-right-header div.menu-right-header p span.title {
