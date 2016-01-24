@@ -14,7 +14,13 @@ appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUti
         }, 0);
         return debounceFn;
     };// End buildToggler.
-
+    $scope.goto=function(path){
+        $scope.navigateTo(path);
+    };
+    // goToSetting is for navigate to Dashboard Setting page
+    $scope.goToSetting = function () {
+        $state.go("app.dashboardSetting");
+    };// End goToSetting.
     // navigateTo is for navigate to other page
     // by using targetPage to be the destination state.
     // Parameter :

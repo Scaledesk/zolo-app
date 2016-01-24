@@ -1,0 +1,53 @@
+<!--View Information-->
+<!--View name : Pricing-->
+<!--State name : app.pricing-->
+<!--URL : #app/pricing-->
+
+<ion-view title="Material Store">
+    <!--pricing section-->
+    <ion-content id="pricing-content">
+        <!--header section-->
+        <md-card>
+            <img ng-src="{{'img/bg_cover_01.png'}}" class="md-card-image" alt="Card image">
+            <md-card-content>
+                <h2 class="md-title">MD-CARD</h2>
+
+                <p>
+                    card content ........................................
+                </p>
+            </md-card-content>
+            <div class="md-actions" layout="row" layout-align="end center">
+                <a href="" class="md-button md-default-theme">Action 1</a>
+                <a href="" class="md-raised md-button md-default-theme material-background">Button</a>
+
+            </div>
+        </md-card>
+        <div id="mobile-contract-detail-content">
+            <!--input section-->
+            <md-list>
+                <md-divider></md-divider>
+                <md-subheader class="md-warn">Default List</md-subheader>
+                <md-list-item class="md-list-item-default" ng-click="showListBottomSheet($event)">
+                    <i class="ion-android-pin"></i>
+
+                    <p>Data Row 1</p>
+                </md-list-item>
+                <md-list-item class="md-list-item-default" ng-click="doSomeThing()">
+                    <i class="ion-android-refresh"></i>
+
+                    <p>Data Row 2</p>
+                </md-list-item>
+                <md-list-item class="md-list-item-default" ng-click="doSomeThing()">
+                    <i class="ion-android-create"></i>
+
+                    <p>Data Row 3</p>
+                </md-list-item>
+                <md-divider></md-divider>
+
+
+                <md-divider></md-divider>
+        </div> <!--end mobile contract detail section-->
+    </ion-content><!--end pricing section-->
+
+
+</ion-view>

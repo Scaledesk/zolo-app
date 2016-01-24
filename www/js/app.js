@@ -360,6 +360,18 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.register', {
+                url: "/register",
+                params:{
+                    isAnimated:false
+                },
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/Registration/html/registration.html",
+                        controller: 'registrationController'
+                    }
+                }
+            })
             .state('app.packages', {
                 url: "/packages",
                 params:{
