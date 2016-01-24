@@ -17,11 +17,14 @@
     <ion-content scroll="false">
         <!--list section-->
         <md-list>
-            <md-list-item class="md-list-item-default" ng-click="navigateTo('app.signIn',true)">
+            <md-list-item ng-if="loggedin===false" class="md-list-item-default" ng-click="navigateTo('app.signIn',true)">
                 <p>Sign In</p>
             </md-list-item>
-            <md-list-item class="md-list-item-default" ng-click="navigateTo('app.register',true)">
+            <md-list-item ng-if="loggedin===false" class="md-list-item-default" ng-click="navigateTo('app.register',true)">
                 <p>Register</p>
+            </md-list-item>
+            <md-list-item ng-if="loggedin===true" class="md-list-item-default" ng-click="logout()">
+                <p>Logout</p>
             </md-list-item>
           <!--  <md-list-item class="md-list-item-default" ng-click="navigateTo('app.dashboard',false)">
                 <p>Register</p>

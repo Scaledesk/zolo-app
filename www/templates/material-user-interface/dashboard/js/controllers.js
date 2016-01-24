@@ -1,5 +1,5 @@
 // Controller of dashboard.
-appControllers.controller('dashboardCtrl', function ($scope, $timeout, $state,$stateParams, $ionicHistory) {
+appControllers.controller('dashboardCtrl', function ($scope, $timeout, $state,$stateParams, $ionicHistory,$mdToast) {
 
     //$scope.isAnimated is the variable that use for receive object data from state params.
     //For enable/disable row animation.
@@ -19,7 +19,19 @@ appControllers.controller('dashboardCtrl', function ($scope, $timeout, $state,$s
             }
         }, ($scope.isAnimated  ? 300 : 0));
     }; // End of navigateTo.
-
+    $scope.showToast = function (toastPosition,action) {
+        $mdToast.show({
+            controller: 'toastController',
+            templateUrl: 'toast.html',
+            hideDelay: 800,
+            position: toastPosition,
+            locals: {
+                displayOption: {
+                    title: action
+                }
+            }
+        });
+    }; // End of showToast.
     // goToSetting is for navigate to Dashboard Setting page
     $scope.goToSetting = function () {
         $state.go("app.dashboardSetting");
@@ -28,7 +40,28 @@ appControllers.controller('dashboardCtrl', function ($scope, $timeout, $state,$s
 }); // End of dashboard controller.
 
 // Controller of Dashboard Setting.
-appControllers.controller('dashboardSettingCtrl', function ($scope, $state,$ionicHistory,$ionicViewSwitcher,$location) {
+appControllers.controller('dashboardSettingCtrl', function ($scope, $state,$ionicHistory,$ionicViewSwitcher,$location,$auth,$mdToast) {
+
+    $scope.showToast = function (toastPosition,action) {
+        $mdToast.show({
+            controller: 'toastController',
+            templateUrl: 'toast.html',
+            hideDelay: 800,
+            position: toastPosition,
+            locals: {
+                displayOption: {
+                    title: action
+                }
+            }
+        });
+    }; // End of showToast.
+    $scope.loggedin= $auth.isAuthenticated()?true:false;
+    $scope.logout=function(){
+        $auth.logout().then(function(){
+            $scope.showToast("top","You are logged out successfully");
+            $scope.navigateTo('app.packages',true);
+        });
+    }
 
     $scope.goto=function(path){
         console.log("goto:"+path);
