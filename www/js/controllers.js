@@ -86,7 +86,7 @@ var appControllers = angular.module('starter.controllers', [])
         }; // End of navigateTo.
     })//end Registration Controller
     //packageDisplayController
-    .controller('packageDisplayController',function($scope,$stateParams,$ionicViewSwitcher,$ionicHistory,$http,serverConfig,$mdToast){
+    .controller('packageDisplayController',function($scope,$stateParams,$ionicViewSwitcher,$ionicHistory,$http,serverConfig,$mdToast,$state){
         $scope.navigateTo = function (stateName,objectData) {
             if ($ionicHistory.currentStateName() != stateName) {
                 $ionicHistory.nextViewOptions({
