@@ -25,7 +25,7 @@ appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUti
     // by using targetPage to be the destination state.
     // Parameter :
     // stateNames = target state to go
-    $scope.navigateTo = function (stateName) {
+    $scope.navigateTo = function (stateName,obj) {
         $timeout(function () {
             $mdSidenav('left').close();
             if ($ionicHistory.currentStateName() != stateName) {
@@ -33,7 +33,7 @@ appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUti
                     disableAnimate: true,
                     disableBack: true
                 });
-                $state.go(stateName);
+                $state.go(stateName,{id:obj});
             }
         }, ($scope.isAndroid == false ? 300 : 0));
     };// End navigateTo.

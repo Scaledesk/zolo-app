@@ -31,3 +31,23 @@ appControllers.filter('numberSuffix', function () {
         return (input / Math.pow(1000, exp)).toFixed(1) + suffixes[exp - 1];
     }
 });// End Filter numberSuffix.
+//filter to convert html to plain text
+appControllers.filter('htmlToPlaintextTruncate', function() {
+    return function(text, length, end) {
+        var htmlToPlaintext;
+        if (isNaN(length))
+            length = 10;
+
+        if (end === undefined)
+            end = "...";
+
+     /*   if (text.length <= length || text.length - end.length <= length) {
+            return String(text).replace(/<[^>]+>/gm, '');
+        }
+        else {*/
+            htmlToPlaintext = String(text).replace(/<[^>]+>/gm, '');
+            return String(htmlToPlaintext).substring(0, length-end.length) + end;
+       /* }*/
+
+    }
+});

@@ -39,7 +39,7 @@
             <!--list section-->
             <div ng-if="isAndroid" class="menu-list">
                 <md-subheader class="md-warn">Categories</md-subheader>
-                <md-list-item ng-repeat="category in categories" class="menu-list-item" ng-click="myNavigateTo('app.categoryPage',category.id)">
+                <md-list-item ng-repeat="category in categories" class="menu-list-item" ng-click="navigateTo('app.categoryPage',category.id)">
                     <i class="fa fa-database"></i>
                     <span>{{category.name}}</span>
                 </md-list-item>

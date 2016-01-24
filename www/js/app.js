@@ -384,6 +384,18 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.packageDisplay', {
+                url: "/package?id",
+                params:{
+                    isAnimated:false
+                },
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/packageDisplayPage/html/pdp.html",
+                        controller: 'packageDisplayController'
+                    }
+                }
+            })
             .state('app.dashboard', {
                 url: "/dashboard",
                 params:{

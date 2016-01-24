@@ -1,6 +1,6 @@
 var appControllers = angular.module('starter.controllers', [])
     //Start Package Controller
-    .controller('packageController',function($scope,$http,serverConfig,$state) {
+    .controller('packageController',function($scope,$http,serverConfig,$state,$ionicViewSwitcher,$ionicHistory) {
     $http.get(serverConfig.address + 'api/packages').success(function (response) {
         $scope.packages = response.data;
         packages_length=$scope.packages.length;
@@ -17,6 +17,22 @@ var appControllers = angular.module('starter.controllers', [])
         $scope.goToSetting = function () {
             $state.go("app.dashboardSetting");
         };// End goToSetting.
+        $scope.navigateTo = function (stateName,obj) {
+            if ($ionicHistory.currentStateName() != stateName) {
+                $ionicHistory.nextViewOptions({
+                    disableAnimate: false,
+                    disableBack: true
+                });
+
+                //Next view animate will display in back direction
+                $ionicViewSwitcher.nextDirection('back');
+
+                $state.go(stateName, {
+                    isAnimated: true,
+                    id:obj
+                });
+            }
+        }; // End of navigateTo.
 })//End Package Controller
     .controller('registrationController',function($scope,$http,serverConfig,$mdToast,$ionicViewSwitcher,$ionicHistory,$state){
         /**
@@ -70,7 +86,7 @@ var appControllers = angular.module('starter.controllers', [])
         }; // End of navigateTo.
     })//end Registration Controller
     //packageDisplayController
-    .controller('packageDisplayController',function($scope){
+    .controller('packageDisplayController',function($scope,$stateParams,$ionicViewSwitcher,$ionicHistory,$http,serverConfig,$mdToast){
         $scope.navigateTo = function (stateName,objectData) {
             if ($ionicHistory.currentStateName() != stateName) {
                 $ionicHistory.nextViewOptions({
@@ -86,6 +102,34 @@ var appControllers = angular.module('starter.controllers', [])
                 });
             }
         }; // End of navigateTo.
+        id=$stateParams.id
+        $http({
+            method: 'GET',
+            url: serverConfig.address+'api/package/'+id
+        })//on success
+            .success(function(zolo_package){
+            $scope.package=zolo_package.data;
+            })
+            //  on some error
+            .error(function(data){
+                $scope.showToast("top","Some error occurred, try Again");
+                $scope.package=undefined;
+                console.log(data);
+            });
+        delete id;
+        $scope.showToast = function (toastPosition,action) {
+            $mdToast.show({
+                controller: 'toastController',
+                templateUrl: 'toast.html',
+                hideDelay: 800,
+                position: toastPosition,
+                locals: {
+                    displayOption: {
+                        title: action
+                    }
+                }
+            });
+        }; // End of showToast.
     })//end PackageDisplayController
     ; // Use for all controller of application.
 var appServices = angular.module('starter.services', []);// Use for all service of application.

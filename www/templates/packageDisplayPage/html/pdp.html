@@ -8,12 +8,12 @@
     <ion-content id="pricing-content">
         <!--header section-->
         <md-card>
-            <img ng-src="{{'img/bg_cover_01.png'}}" class="md-card-image" alt="Card image">
+            <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <md-card-content>
-                <h2 class="md-title">MD-CARD</h2>
+                <h2 class="md-title">{{package.name}}</h2>
 
                 <p>
-                    card content ........................................
+                    {{package.description| htmlToPlaintextTruncate:package.description.length}}
                 </p>
             </md-card-content>
             <div class="md-actions" layout="row" layout-align="end center">
