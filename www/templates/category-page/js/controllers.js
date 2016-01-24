@@ -1,7 +1,7 @@
 // Controller of menu toggle.
 // Learn more about Sidenav directive of angular material
 // https://material.angularjs.org/latest/#/demo/material.components.sidenav
-appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,AssignmentService,$stateParams) {
+appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,AssignmentService,$stateParams,$ionicViewSwitcher) {
 
     $scope.toggleLeft = buildToggler('right');
 
@@ -25,18 +25,39 @@ appControllers.controller('categoryPageCtrl', function ($scope, $timeout, $mdUti
     // by using targetPage to be the destination state.
     // Parameter :
     // stateNames = target state to go
-    $scope.navigateTo = function (stateName,obj) {
-        $timeout(function () {
-            $mdSidenav('left').close();
-            if ($ionicHistory.currentStateName() != stateName) {
-                $ionicHistory.nextViewOptions({
-                    disableAnimate: true,
-                    disableBack: true
+    $scope.navigateTo = function (stateName,obj,category_id) {
+        if ($ionicHistory.currentStateName() != stateName) {
+            $ionicHistory.nextViewOptions({
+                disableAnimate: false,
+                disableBack: true
+            });
+
+            //Next view animate will display in back direction
+            $ionicViewSwitcher.nextDirection('back');
+            if(stateName==='app.packageDisplay'){
+                console.log("app.packageDisplay");
+                console.log(stateName);
+                $state.go(stateName, {
+                    isAnimated: true,
+                    id:obj,
+                    from:"category",
+                    category_id:category_id
                 });
-                $state.go(stateName,{id:obj});
+            }else{
+                console.log(stateName);
+                $state.go(stateName, {
+                    isAnimated: true,
+                    id:obj,
+                });
             }
-        }, ($scope.isAndroid == false ? 300 : 0));
-    };// End navigateTo.
+            /*$state.go(stateName, {
+                isAnimated: true,
+                id:obj,
+                from:from,
+                category_id:category_id
+            });*/
+        }
+    }; // End of navigateTo.
 
     //Get all Categories
 

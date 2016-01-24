@@ -51,7 +51,7 @@
         <div id="product-list" class="row">
 
             <div class="col" ng-if="first_packages_row.length!=0">
-                <div class="pin" ng-repeat="package in first_packages_row" ng-click="showConfirmDialog($event)">
+                <div class="pin" ng-repeat="package in first_packages_row" ng-click="navigateTo('app.packageDisplay',package.id,category.data.id)">
                     <img src="{{package.first_photo}}"/>
 
                     <h1>{{package.name}}</h1>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col" ng-if="second_packages_row.length!=0">
-                <div class="pin" ng-repeat="package in second_packages_row" ng-click="showConfirmDialog($event)">
+                <div class="pin" ng-repeat="package in second_packages_row" ng-click="navigateTo('app.packageDisplay',package.id,category.data.id)">
                     <img src="{{package.first_photo}}"/>
 
                     <h1>{{package.name}}</h1>

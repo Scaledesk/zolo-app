@@ -17,7 +17,7 @@ var appControllers = angular.module('starter.controllers', [])
         $scope.goToSetting = function () {
             $state.go("app.dashboardSetting");
         };// End goToSetting.
-        $scope.navigateTo = function (stateName,obj) {
+        $scope.navigateTo = function (stateName,objectData,obj) {
             if ($ionicHistory.currentStateName() != stateName) {
                 $ionicHistory.nextViewOptions({
                     disableAnimate: false,
@@ -27,10 +27,26 @@ var appControllers = angular.module('starter.controllers', [])
                 //Next view animate will display in back direction
                 $ionicViewSwitcher.nextDirection('back');
 
-                $state.go(stateName, {
+              /*  $state.go(stateName, {
                     isAnimated: true,
-                    id:obj
-                });
+                    id:obj,
+                    from:from
+                });*/
+                if(stateName==='app.packageDisplay'){
+                    console.log("app.packageDisplay");
+                    console.log(stateName);
+                    $state.go(stateName, {
+                        isAnimated: objectData,
+                        id:obj,
+                        from:"packages"
+                    });
+                }else{
+                    console.log(stateName);
+                    $state.go(stateName, {
+                        isAnimated: objectData,
+                        id:obj,
+                    });
+                }
             }
         }; // End of navigateTo.
 })//End Package Controller
@@ -87,7 +103,7 @@ var appControllers = angular.module('starter.controllers', [])
     })//end Registration Controller
     //packageDisplayController
     .controller('packageDisplayController',function($scope,$stateParams,$ionicViewSwitcher,$ionicHistory,$http,serverConfig,$mdToast,$state){
-        $scope.navigateTo = function (stateName,objectData) {
+        $scope.navigateTo = function (stateName,objectData,category_id) {
             if ($ionicHistory.currentStateName() != stateName) {
                 $ionicHistory.nextViewOptions({
                     disableAnimate: false,
@@ -99,6 +115,7 @@ var appControllers = angular.module('starter.controllers', [])
 
                 $state.go(stateName, {
                     isAnimated: objectData,
+                    id:category_id
                 });
             }
         }; // End of navigateTo.
@@ -117,6 +134,8 @@ var appControllers = angular.module('starter.controllers', [])
                 console.log(data);
             });
         delete id;
+        $scope.from=$stateParams.from;
+        $scope.category_id=$stateParams.category_id;
         $scope.showToast = function (toastPosition,action) {
             $mdToast.show({
                 controller: 'toastController',

@@ -385,7 +385,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.packageDisplay', {
-                url: "/package?id",
+                url: "/package?id&from&category_id",
                 params:{
                     isAnimated:false
                 },

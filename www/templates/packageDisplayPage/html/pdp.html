@@ -5,7 +5,10 @@
 
 <ion-view title="{{package.name}}">
     <ion-nav-buttons side="left">
-        <a ng-click="navigateTo('app.packages',true)" class="button back-button buttons button-clear header-item nav-back-btn">
+        <a ng-if="from==='packages'" ng-click="navigateTo('app.packages',true)" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+        <a ng-if="from==='category'" ng-click="navigateTo('app.categoryPage',true,category_id)" class="button back-button buttons button-clear header-item nav-back-btn">
             <i class="ion-android-arrow-back"></i>
         </a>
     </ion-nav-buttons><!--end left button on navigation bar-->
