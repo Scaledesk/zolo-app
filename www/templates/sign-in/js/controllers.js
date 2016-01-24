@@ -81,11 +81,26 @@ $scope.user = {};
         $scope.disabled = true;
         $scope.get_token($scope.user);
     };
+    $scope.showToast = function (toastPosition,action) {
+        $mdToast.show({
+            controller: 'toastController',
+            templateUrl: 'toast.html',
+            hideDelay: 800,
+            position: toastPosition,
+            locals: {
+                displayOption: {
+                    title: action
+                }
+            }
+        });
+    }; // End of showToast.
     $scope.get_token = function(user){
         $auth.login(user)
             .then(function (response) {
                 window.localStorage['access_token']=response.data.access_token
-                $scope.navigateTo("app.packages",true);
+                $scope.showToast("top","you logged in successfully");
+                $location.path("app.packages",true);
+                //$scope.navigateTo("app.packages",true);
                 //$location.path('app/dashboard')
             })
             .catch(function (response) {
