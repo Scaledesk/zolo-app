@@ -3,7 +3,7 @@
 <!--State name : app.pricing-->
 <!--URL : #app/pricing-->
 
-<ion-view title="{{package.name}}">
+<ion-view title="">
     <ion-nav-buttons side="left">
         <a ng-if="from==='packages'" ng-click="navigateTo('app.packages',true)" class="button back-button buttons button-clear header-item nav-back-btn">
             <i class="ion-android-arrow-back"></i>
@@ -13,14 +13,18 @@
         </a>
     </ion-nav-buttons><!--end left button on navigation bar-->
     <!--pricing section-->
-    <ion-content id="pricing-content">
+    <ion-content id="product-detail-content">
         <!--header section-->
-        <md-card>
+        <md-card id="product-detail-tab-detail">
             <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
+            <div style="align:right ;"><a  class="md-button md-accent md-fab fab-toolbar-medium"
+               aria-label="showListBottomSheet" ng-click="sharedProduct1($event)">
+                <i class="ion-android-share-alt"></i>
+            </a></div>
             <md-card-content>
-                <h2 class="md-title">{{package.name}}</h2>
+               <b><h2 style="text-align: justify;" class="md-title">{{package.name}}</h2></b>
 
-                <p>
+                <p style="font-size: 15px; text-align: justify;">
                     {{package.description| htmlToPlaintextTruncate:package.description.length}}
                 </p>
             </md-card-content>
@@ -57,5 +61,57 @@
         </div> &lt;!&ndash;end mobile contract detail section&ndash;&gt;-->
     </ion-content><!--end pricing section-->
 
+    <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">
+      <!--  <div class="buttons">
+            <button class="button">Add to Collection</button>
+        </div>
+        <h1 class="title"></h1>
+        <div class="buttons" ng-click="">
+            <button class="button">Buy Now</button>
+        </div>-->
+        <div class="button-bar">
+            <a class="button button-dark">Add to Collection</a>
+            <a class="button button-royal">Order Now</a>
+        </div>
+    </ion-footer-bar>
+    <!--angular template section-->
+    <script type="text/ng-template" id="bottom-sheet-shared.html">
+        <md-bottom-sheet class="md-grid">
+            <!--list section-->
+            <md-list id="bottom-sheet-grid-md-list">
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedFacebook()">
+                        <md-icon md-svg-src="facebook"></md-icon>
+                        <div class="md-grid-text"> Facebook</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedTwitter()">
+                        <md-icon md-svg-src="twitter"></md-icon>
+                        <div class="md-grid-text"> Twitter</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedMail()">
+                        <md-icon md-svg-src="mail"></md-icon>
+                        <div class="md-grid-text"> Mail</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="saveImage()">
+                        <i class="ion-android-image"></i>
 
+                        <div class="md-grid-text"> Save Image</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="sharedMore()">
+                        <md-icon md-svg-src="share-arrow"></md-icon>
+                        <div class="md-grid-text"> More</div>
+                    </a>
+                </md-list-item>
+            </md-list> <!--end list section-->
+        </md-bottom-sheet>
+    </script>
+    <!--end angular template section-->
 </ion-view>

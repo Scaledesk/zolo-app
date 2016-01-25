@@ -603,7 +603,7 @@ md-sidenav {
 
 #social-login {
   text-align: center;
-  background-color: #f6f6f6; }
+  /*background-color: #f6f6f6; }*/}
   #social-login.bg-white {
     background-color: white; }
   #social-login form {

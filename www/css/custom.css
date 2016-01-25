@@ -28,10 +28,11 @@
     margin-bottom: 2px;
 }
 .bg-sign{
-    background:url("../img/bg-signin.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background:url("../img/bg-signin.png") no-repeat;
+    /*background-size: cover;*/
+    -webkit-background-size: cover;
 }
+
 .bar-assertive1{
     color: #fff;
     border-color: #FFF;
@@ -67,9 +68,9 @@
     height: auto;
 }
 
-/*.md-input{
+.md-input{
     color:white !important;
-}*/
+}
 #toggle-menu-right-header div.menu-right-header p {
     font-weight: bolder; }
 #toggle-menu-right-header div.menu-right-header p span.title {

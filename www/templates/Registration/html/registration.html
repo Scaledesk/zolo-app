@@ -3,22 +3,25 @@
 <!--State name : app.fakeLogin-->
 <!--URL : #app/fakeLogin-->
 
-<ion-view title="Register">
+<ion-view title="Register" hide-nav-bar="true" class="bg-sign">
     <!--left button on navigation bar-->
-    <ion-nav-buttons side="left">
+    <!--<ion-nav-buttons side="left">
         <a ng-click="navigateTo('app.dashboardSetting')" class="button back-button buttons button-clear header-item nav-back-btn">
             <i class="ion-android-arrow-back"></i>
         </a>
-    </ion-nav-buttons><!--end left button on navigation bar-->
+    </ion-nav-buttons>--><!--end left button on navigation bar-->
 
     <!--login content section-->
-    <ion-content id="social-login" class="bg-white">
+    <ion-content id="social-login">
+        <div align="left"><a style="color: white"  ng-click="navigateTo('app.dashboardSetting')" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a></div>
         <!--fake login form section-->
         <form class="fakeLogin-form">
             <div>
-                <img src="img/app_icon.png"/>
+                <img class="img-res" src="img/app_icon.png"/>
             </div>
-            <div class="sub-header">Register to the application</div>
+            <div class="sub-header"><p class="custom-fontwhite custom-fontsize">Register to the application</p></div>
             <div id="fakeLogin">
                 <md-input-container md-no-float="">
                     <input ng-model="user.name" class="user-name" placeholder="Name">

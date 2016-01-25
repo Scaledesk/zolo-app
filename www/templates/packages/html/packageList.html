@@ -17,7 +17,7 @@
             <h1>ZOLO</h1>
 
             <md-input-container md-no-float="">
-                <input ng-model="filterText" id="name_2" placeholder="Search for contacts.">
+                <input ng-model="filterText" id="name_2" placeholder="Search..">
             </md-input-container>
 
         </div>
@@ -55,14 +55,14 @@
                 <div class="pin" ng-repeat="package in first_packages_row" ng-click="navigateTo('app.packageDisplay',true,package.id)">
                     <img src="{{package.first_photo}}"/>
 
-                    <h1>{{package.name}}</h1>
+                    <h4>{{package.name}}</h4>
 
                     <p>
                         By :{{package.seller_name}}
                     </p>
 
                     <div class="pin-footer">
-                        $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        &#8377;<span class="pin-footer text-left font-sale">{{package.price}}</span>
                         <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
                     </div>
                 </div><!--end pin section-->
@@ -72,14 +72,14 @@
                 <div class="pin" ng-repeat="package in second_packages_row" ng-click="navigateTo('app.packageDisplay',true,package.id)">
                     <img src="{{package.first_photo}}"/>
 
-                    <h1>{{package.name}}</h1>
+                    <h3>{{package.name}}</h3>
 
                     <p>
                         By :{{package.seller_name}}
                     </p>
 
                     <div class="pin-footer">
-                        $<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        &#8377;<span class="pin-footer text-left font-sale">{{package.price}}</span>
                         <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
                     </div>
                 </div><!--end pin section-->
@@ -92,5 +92,4 @@
         <ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>
         <md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>
     </div><!--end loading progress-->
-
 </ion-view>

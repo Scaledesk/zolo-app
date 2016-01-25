@@ -1,6 +1,6 @@
 var appControllers = angular.module('starter.controllers', [])
     //Start Package Controller
-    .controller('packageController',function($scope,$http,serverConfig,$state,$ionicViewSwitcher,$ionicHistory) {
+    .controller('packageController',function($scope,$http,serverConfig,$state,$ionicViewSwitcher,$ionicHistory,$mdBottomSheet) {
     $http.get(serverConfig.address + 'api/packages').success(function (response) {
         $scope.packages = response.data;
         packages_length=$scope.packages.length;
@@ -49,6 +49,14 @@ var appControllers = angular.module('starter.controllers', [])
                 }
             }
         }; // End of navigateTo.
+        $scope.sharedProduct1 = function ($event) {
+            console.log("inside share product");
+            $mdBottomSheet.show({
+                templateUrl: 'bottom-sheet-shared.html',
+                controller: 'sharedSocialBottomSheetCtrl',
+                targetEvent: $event,
+            });
+        };// End sharedProduct.
 })//End Package Controller
     .controller('registrationController',function($scope,$http,serverConfig,$mdToast,$ionicViewSwitcher,$ionicHistory,$state){
         /**
