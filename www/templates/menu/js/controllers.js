@@ -3,24 +3,35 @@
 // https://material.angularjs.org/latest/#/demo/material.components.sidenav
 appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,CategoryService,$auth,$rootScope,$http,serverConfig) {
     console.log("inside menu controller");
-    if($auth.isAuthenticated()){
-        $http({
-            method: 'GET',
-            url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']
-        }).then(function(data){
-            $scope.user_profile=data.data.data;
-            console.log("authenticated");
-        },function(response){
-            if(response.status == 500){
-                window.localStorage['access_token']=undefined
-                $auth.logout();
-            }
-        });
-    }else{
-        $scope.user_profile=undefined;
-        window.localStorage['access_token']=undefined
-        console.log("unauthenticated");
+    $scope.$on('user_login_logout',function(event,args){
+       if(args.message==="user_logged_in"){
+           $scope.check();
+       }
+        if(args.message==="user_logged_out"){
+           $scope.check();
+       }
+    });
+    $scope.check=function(){
+        if($auth.isAuthenticated()){
+            $http({
+                method: 'GET',
+                url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']
+            }).then(function(data){
+                $scope.user_profile=data.data.data;
+                console.log("authenticated");
+            },function(response){
+                if(response.status == 500){
+                    window.localStorage['access_token']=undefined
+                    $auth.logout();
+                }
+            });
+        }else{
+            $scope.user_profile=undefined;
+            window.localStorage['access_token']=undefined
+            console.log("unauthenticated");
+        }
     }
+    $scope.check();
     /*$http({
         method: 'GET',
         url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']

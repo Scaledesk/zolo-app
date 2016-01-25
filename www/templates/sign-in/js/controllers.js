@@ -99,6 +99,8 @@ $scope.user = {};
             .then(function (response) {
                 window.localStorage['access_token']=response.data.access_token
                 $scope.showToast("top","you logged in successfully");
+                //emit the login event - notify user is logged in
+                $scope.$emit('user_login_logout', { message: "user_logged_in" });
                 $location.path("app.packages",true);
                 //$scope.navigateTo("app.packages",true);
                 //$location.path('app/dashboard')
@@ -107,6 +109,7 @@ $scope.user = {};
                 console.log("Inside invalid credentials");
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
+                $scope.$emit('user_login_logout', { message: "user_logged_out" });
                 $scope.navigateTo("app.packages",true);
                 $mdToast.show({
                     controller: 'toastController',

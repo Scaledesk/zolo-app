@@ -58,6 +58,7 @@ appControllers.controller('dashboardSettingCtrl', function ($scope, $state,$ioni
     $scope.loggedin= $auth.isAuthenticated()?true:false;
     $scope.logout=function(){
         $auth.logout().then(function(){
+            $scope.$emit('user_login_logout', { message: "user_logged_out" });
             $scope.showToast("top","You are logged out successfully");
             $scope.navigateTo('app.packages',true);
         });
