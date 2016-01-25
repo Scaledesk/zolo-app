@@ -19,7 +19,8 @@ window.globalVariable = {
         foursquareColor: "#F94777",
         googlePlusColor: "#D73D32",
         instagramColor: "#517FA4",
-        wordpressColor: "#0087BE"
+        wordpressColor: "#0087BE",
+        zolologincolor:"#1a0019"
     },// End custom color style variable
     startPage: {
         url: "/app/dashboard",//Url of start page.
@@ -218,6 +219,10 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 case "app.contractUs":
                     customStyle += getContractUsStyle();
                     break;
+                case "app.signIn":
+                    customStyle += getSocialNetworkStyle(window.globalVariable.color.zolologincolor);
+                    break;
+
                 default:
                     customStyle += getDefaultStyle();
                     break;
