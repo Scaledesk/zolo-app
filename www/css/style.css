@@ -980,11 +980,11 @@ md-sidenav {
   #try-app-content span {
     margin: 0; }
   #try-app-content img {
-    width: 100%; }
+    /*width: 100%; }*/}
   #try-app-content .slide-01 {
-    background: url(../img/slide_01.png);
-    background-repeat: no-repeat;
-    background-size: 100%; }
+    /*background: url(../img/walk1.png);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100%; }*/}
     #try-app-content .slide-01 .try-app-footer-content {
       bottom: 20px;
       position: fixed;
@@ -997,13 +997,13 @@ md-sidenav {
       #try-app-content .slide-01 .try-app-footer-content div.col-50 .right {
         margin-left: -14px; }
   #try-app-content .slide-02 {
-    background: url(../img/slide_02.png);
-    background-repeat: no-repeat;
-    background-size: 100%; }
+    /*background: url(../img/slide_02.png);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100%; */}
   #try-app-content .slide-03 {
-    background: url(../img/slide_03.png);
-    background-repeat: no-repeat;
-    background-size: 100%; }
+    /*background: url(../img/slide_03.png);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100%; */}
   #try-app-content .slide-04 {
     background: url(../img/slide_04.png);
     background-repeat: no-repeat;

@@ -28,10 +28,43 @@
     margin-bottom: 2px;
 }
 .bg-sign{
-    background:url("../img/bg-sign-cover.png");
+    background:url("../img/bg-signin.png");
     background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+    background-size: cover;
+}
+.bar-assertive1{
+    color: #fff;
+    border-color: #FFF;
+    background-color: black;
+    opacity:0.5;
+    /*background-image: linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);*/
+}
+.bg-static{
+    background:url('../img/walk1.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /*background-image: linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);*/
+}
+.img-res{
+    width:250px !important;
+    height:auto;
+    margin-bottom: 10%;
+}
+.custom-fontwhite{
+    color: white;
+}
+.custom-fontsize{
+    font-size: 20px;
+}
+.walk-1 img{
+    margin-top:30% ;
+    width:110px; /* you can use % */
+    height: auto;
+}
+.walk-2 img{
+    margin-top:30% ;
+    width:220px; /* you can use % */
+    height: auto;
 }
 
 /*.md-input{

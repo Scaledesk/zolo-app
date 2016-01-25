@@ -150,6 +150,44 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 "}";
         }// End create custom style for Social Network view.
 
+        // Create custom style for Social Network view.
+        function getzoloCustomColorHeader(socialColor) {
+            return "" +
+                ".material-background-nav-bar {" +
+                "   background              : " + url('../img/bg-signin.png') + " !important;" +
+                "   border-style            : none;" +
+                "} " +
+                "md-ink-bar {" +
+                "   color                   : " + socialColor + " !important;" +
+                "   background              : " + socialColor + " !important;" +
+                "}" +
+                "md-tab-item {" +
+                "   color                   : " + socialColor + " !important;" +
+                "}" +
+                " md-progress-circular.md-warn .md-inner .md-left .md-half-circle {" +
+                "   border-left-color       : " + socialColor + " !important;" +
+                "}" +
+                " md-progress-circular.md-warn .md-inner .md-left .md-half-circle, md-progress-circular.md-warn .md-inner .md-right .md-half-circle {" +
+                "    border-top-color       : " + socialColor + " !important;" +
+                "}" +
+                " md-progress-circular.md-warn .md-inner .md-gap {" +
+                "   border-top-color        : " + socialColor + " !important;" +
+                "   border-bottom-color     : " + socialColor + " !important;" +
+                "}" +
+                "md-progress-circular.md-warn .md-inner .md-right .md-half-circle {" +
+                "  border-right-color       : " + socialColor + " !important;" +
+                " }" +
+                ".spinner-android {" +
+                "   stroke                  : " + socialColor + " !important;" +
+                "}" +
+                ".md-primary-color {" +
+                "   color                   : " + socialColor + " !important;" +
+                "}" +
+                "a.md-button.md-primary, .md-button.md-primary {" +
+                "   color                   : " + socialColor + " !important;" +
+                "}";
+        }// End create custom style for Social Network view.
+
 
         function initialRootScope() {
             $rootScope.appPrimaryColor = appPrimaryColor;// Add value of appPrimaryColor to rootScope for use it to base color.
@@ -335,6 +373,11 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         //Learn more about ionNavView at http://ionicframework.com/docs/api/directive/ionNavView/
         //Learn more about  AngularUI Router's at https://github.com/angular-ui/ui-router/wiki
         $stateProvider
+            .state('get_started',{
+                url: "/mainWalkthrough",
+                templateUrl: "templates/MainWalkthrough/html/mainWalkthrough.html",
+                controller: 'mainWalkthrough'
+            })
             .state('app', {
                 url: "/app",
                 abstract: true,
@@ -1005,7 +1048,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
         //Use $urlRouterProvider.otherwise(Url);
         //$urlRouterProvider.otherwise(window.globalVariable.startPage.url);
-        $urlRouterProvider.otherwise("app/packages");
+        $urlRouterProvider.otherwise("/mainWalkthrough");
+        //$urlRouterProvider.otherwise("app/packages");
 
     })
 
