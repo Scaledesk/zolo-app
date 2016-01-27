@@ -6,9 +6,13 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
     $scope.$on('user_login_logout',function(event,args){
        if(args.message==="user_logged_in"){
            $scope.check();
+           $location.path("app.packages",true);
+           $scope.$emit('user_login_logout', { message: "user_logged_in" });
        }
         if(args.message==="user_logged_out"){
            $scope.check();
+            $location.path("app.packages",true);
+            $scope.$emit('user_login_logout', { message: "user_logged_out" });
        }
     });
     $scope.check=function(){

@@ -100,9 +100,9 @@ $scope.user = {};
                 window.localStorage['access_token']=response.data.access_token
                 $scope.showToast("top","you logged in successfully");
                 //emit the login event - notify user is logged in
+                //$location.path("app.packages",true);
                 $scope.$emit('user_login_logout', { message: "user_logged_in" });
-                $location.path("app.packages",true);
-                //$scope.navigateTo("app.packages",true);
+                $scope.navigateTo("app.packages",true);
                 //$location.path('app/dashboard')
             })
             .catch(function (response) {

@@ -55,7 +55,20 @@ appControllers.controller('dashboardSettingCtrl', function ($scope, $state,$ioni
             }
         });
     }; // End of showToast.
-    $scope.loggedin= $auth.isAuthenticated()?true:false;
+    $scope.$on('user_login_logout',function(event,args){
+        if(args.message==="user_logged_in"){
+            $scope.check();
+            $location.path("app.packages",true);
+        }
+        if(args.message==="user_logged_out"){
+            $scope.check();
+            $location.path("app.packages",true);
+        }
+    });
+    $scope.check=function(){
+        $scope.loggedin= $auth.isAuthenticated()?true:false;
+    }
+    $scope.check();
     $scope.logout=function(){
         $auth.logout().then(function(){
             $scope.$emit('user_login_logout', { message: "user_logged_out" });
