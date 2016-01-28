@@ -109,6 +109,7 @@ $scope.user = {};
                 console.log("Inside invalid credentials");
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
+                delete window.localStorage['user_id'];
                 $scope.$emit('user_login_logout', { message: "user_logged_out" });
                 $scope.navigateTo("app.packages",true);
                 $mdToast.show({

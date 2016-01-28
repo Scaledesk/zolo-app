@@ -1,7 +1,7 @@
 // Controller of menu toggle.
 // Learn more about Sidenav directive of angular material
 // https://material.angularjs.org/latest/#/demo/material.components.sidenav
-appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,CategoryService,$auth,$rootScope,$http,serverConfig,$location,$q) {
+appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,CategoryService,$auth,$rootScope,$http,serverConfig,$location,$q,$mdToast) {
     console.log("inside menu controller");
     $scope.$on('user_login_logout',function(event,args){
        if(args.message==="user_logged_in"){
@@ -38,10 +38,12 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
             user_profile().then(function(value){
                 $scope.user_profile={};
                 $scope.user_profile.data=value;
+                window.localStorage['user_id']=$scope.user_profile.data.user_id;
                 console.log($scope.user_profile.data);
             },function(){
                 $scope.user_profile={};
                 $scope.user_profile.data=undefined;
+                delete window.localStorage['user_id'];
                 console.log("got undefined");
             })
             /*$http({
@@ -62,15 +64,26 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
             }
             $scope.user_profile.data=undefined;
             window.localStorage['access_token']=undefined
+            delete window.localStorage['user_id'];
             console.log("unauthenticated");
         }
         $scope.dologout=function(){
             $scope.user_profile.data=undefined;
             window.localStorage['access_token']=undefined;
+            delete window.localStorage['user_id'];
             console.log("unauthenticated: do logout");
         }
     }
     $scope.check();
+    //logout function
+    $scope.logout=function(){
+        $auth.logout().then(function(){
+            delete window.localStorage['user_id'];
+            $scope.showToast("top","You are logged out successfully");
+            $scope.check();
+            $scope.navigateTo('app.packages',true);
+        });
+    }
     /*$http({
         method: 'GET',
         url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']
@@ -138,6 +151,18 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
         $scope.categories={};
         $scope.categories.data = data.data.data;
     });
-
+    $scope.showToast = function (toastPosition,action) {
+        $mdToast.show({
+            controller: 'toastController',
+            templateUrl: 'toast.html',
+            hideDelay: 800,
+            position: toastPosition,
+            locals: {
+                displayOption: {
+                    title: action
+                }
+            }
+        });
+    }; // End of showToast.
 
 }); // End of menu toggle controller.
