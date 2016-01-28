@@ -28,7 +28,7 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
                     deferred.resolve(data.data.data);
                 },function(response){
                     if(response.status == 500){
-                        window.localStorage['access_token']=undefined
+                        window.localStorage['access_token']=undefined;
                         $auth.logout();
                         deferred.reject(response);
                     }
@@ -36,9 +36,11 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
                 return deferred.promise;
             };
             user_profile().then(function(value){
+                $scope.user_profile={};
                 $scope.user_profile.data=value;
                 console.log($scope.user_profile.data);
             },function(){
+                $scope.user_profile={};
                 $scope.user_profile.data=undefined;
                 console.log("got undefined");
             })

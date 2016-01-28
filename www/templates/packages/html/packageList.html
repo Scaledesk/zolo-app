@@ -21,11 +21,12 @@
             </md-input-container>
 
         </div>
-        <a class="md-button md-accent md-fab fab-toolbar-medium"
+        <!--//icon removed-->
+       <!-- <a class="md-button md-accent md-fab fab-toolbar-medium"
            ng-click=""
            aria-label="Add">
             <i class="icon ion-plus"></i>
-        </a>
+        </a>-->
     </md-toolbar> <!--end toolbar section-->
 
     <!--mobile contract list section-->
@@ -92,4 +93,9 @@
         <ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner>
         <md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>
     </div><!--end loading progress-->
+    <div class="footer-fab-bar">
+        <a class="md-button md-accent md-fab fab-footer" ng-click="" aria-label="Add" tabindex="0">
+            <i class="fa fa-shopping-cart"></i>
+        </a>
+    </div>
 </ion-view>
