@@ -19,17 +19,17 @@
         <!--menu section-->
         <div class="material-background" id="toggle-menu-right-header">
             <!--menu header section-->
-            <div class="menu-left-header">
-                <img  ng-if="user_profile!=undefined" style="height: 62px;width: 62px;" class="user-img" ng-src="{{user_profile.image}}">
-                <img  ng-if="user_profile===undefined" class="user-img" ng-src="{{'/img/profileAvatar.jpg'}}">
-                <p>
+            <div class="menu-left-header" style="margin-left: 10px;">
+                <img  style="margin-top: 15px;" ng-if="user_profile!=undefined" style="height: 62px;width: 62px;" class="user-img" ng-src="{{user_profile.image}}">
+                <img  style="margin-top: 15px;" ng-if="user_profile===undefined" class="user-img" ng-src="{{'/img/profileAvatar.jpg'}}">
+                <span>
                     <span ng-if="user_profile!=undefined" class="title">{{user_profile.name}}</span>
                     <br/>
                     <span ng-if="user_profile!=undefined" class="title">{{user_profile.description}}</span>
                     <span ng-if="user_profile===undefined" class="title">Zolo Right</span>
                     <br/>
                     <span ng-if="user_profile===undefined" class="sub-title">Get anything done!</span>
-                </p>
+                </span>
             </div><!--end menu header section-->
         </div> <!--menu content section-->
         <ion-content id="toggle-menu-right-content">
