@@ -20,15 +20,15 @@
         <div class="material-background" id="toggle-menu-right-header">
             <!--menu header section-->
             <div class="menu-left-header" style="margin-left: 10px;">
-                <img  style="margin-top: 15px;" ng-if="user_profile!=undefined" style="height: 62px;width: 62px;" class="user-img" ng-src="{{user_profile.image}}">
-                <img  style="margin-top: 15px;" ng-if="user_profile===undefined" class="user-img" ng-src="{{'/img/profileAvatar.jpg'}}">
+                <img  style="margin-top: 15px;" ng-if="user_profile.data!=undefined" style="height: 62px;width: 62px;" class="user-img" ng-src="{{user_profile.data.image}}">
+                <img  style="margin-top: 15px;" ng-if="user_profile.data===undefined" class="user-img" ng-src="{{'/img/profileAvatar.jpg'}}">
                 <span>
-                    <span ng-if="user_profile!=undefined" class="title">{{user_profile.name}}</span>
+                    <span ng-if="user_profile.data!=undefined" class="title">{{user_profile.data.name}}</span>
                     <br/>
-                    <span ng-if="user_profile!=undefined" class="title">{{user_profile.description}}</span>
-                    <span ng-if="user_profile===undefined" class="title">Zolo Right</span>
+                    <span ng-if="user_profile.data!=undefined" class="title">{{user_profile.data.description}}</span>
+                    <span ng-if="user_profile.data===undefined" class="title">Zolo Right</span>
                     <br/>
-                    <span ng-if="user_profile===undefined" class="sub-title">Get anything done!</span>
+                    <span ng-if="user_profile.data===undefined" class="sub-title">Get anything done!</span>
                 </span>
             </div><!--end menu header section-->
         </div> <!--menu content section-->
@@ -42,6 +42,10 @@
                 <md-list-item ng-repeat="category in categories" class="menu-list-item" ng-click="navigateTo('app.categoryPage',category.id)">
                     <i class="fa fa-database"></i>
                     <span>{{category.name}}</span>
+                </md-list-item>
+                <md-list-item ng-if="loggedin" class="menu-list-item" ng-click="logout()">
+                    <i class="fa fa-database"></i>
+                    <span>Logout</span>
                 </md-list-item>
                <!-- <md-list-item class="menu-list-item" ng-click="navigateTo('app.signIn')">
                     <i class="fa fa-cube"></i>
@@ -334,6 +338,14 @@
                 <md-list-item ng-repeat="category in categories.data" class="menu-list-item" ng-click="navigateTo('app.categoryPage',category.id)">
                     <i class="fa fa-database"></i>
                     <span>{{category.name}}</span>
+                </md-list-item>
+                <md-list-item ng-if="loggedin===true" class="menu-list-item" ng-click="logout()">
+                    <i class="fa fa-database"></i>
+                    <span>Logout</span>
+                </md-list-item>
+                <md-list-item ng-if="user_profile.data!=undefined" class="menu-list-item" >
+                    <i class="fa fa-database"></i>
+                    <span>Logout</span>
                 </md-list-item>
                <!-- <md-list-item class="menu-list-item" ng-click="navigateTo('app.signIn')">
                     <i class="fa fa-cube"></i>

@@ -1,23 +1,48 @@
 // Controller of menu toggle.
 // Learn more about Sidenav directive of angular material
 // https://material.angularjs.org/latest/#/demo/material.components.sidenav
-appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,CategoryService,$auth,$rootScope,$http,serverConfig) {
+appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state,CategoryService,$auth,$rootScope,$http,serverConfig,$location,$q) {
     console.log("inside menu controller");
     $scope.$on('user_login_logout',function(event,args){
        if(args.message==="user_logged_in"){
            $scope.check();
            $location.path("app.packages",true);
-           $scope.$emit('user_login_logout', { message: "user_logged_in" });
+           //$scope.$emit('user_login_logout', { message: "user_logged_in" });
        }
         if(args.message==="user_logged_out"){
-           $scope.check();
+           //$scope.check();
+           $scope.dologout();
             $location.path("app.packages",true);
-            $scope.$emit('user_login_logout', { message: "user_logged_out" });
+            //$scope.$emit('user_login_logout', { message: "user_logged_out" });
        }
     });
     $scope.check=function(){
         if($auth.isAuthenticated()){
-            $http({
+            var user_profile= function() {
+                var deferred = $q.defer();
+                $http({
+                    method: 'GET',
+                    url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']
+                }).then(function(data){
+                    //$scope.user_profile=data.data.data;
+                    deferred.resolve(data.data.data);
+                },function(response){
+                    if(response.status == 500){
+                        window.localStorage['access_token']=undefined
+                        $auth.logout();
+                        deferred.reject(response);
+                    }
+                });
+                return deferred.promise;
+            };
+            user_profile().then(function(value){
+                $scope.user_profile.data=value;
+                console.log($scope.user_profile.data);
+            },function(){
+                $scope.user_profile.data=undefined;
+                console.log("got undefined");
+            })
+            /*$http({
                 method: 'GET',
                 url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']
             }).then(function(data){
@@ -28,11 +53,19 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
                     window.localStorage['access_token']=undefined
                     $auth.logout();
                 }
-            });
+            });*/
         }else{
-            $scope.user_profile=undefined;
+            if($scope.user_profile==undefined){
+                $scope.user_profile={};
+            }
+            $scope.user_profile.data=undefined;
             window.localStorage['access_token']=undefined
             console.log("unauthenticated");
+        }
+        $scope.dologout=function(){
+            $scope.user_profile.data=undefined;
+            window.localStorage['access_token']=undefined;
+            console.log("unauthenticated: do logout");
         }
     }
     $scope.check();
