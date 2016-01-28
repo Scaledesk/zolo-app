@@ -5,13 +5,18 @@ var appControllers = angular.module('starter.controllers', [])
         if($auth.isAuthenticated()){
         user_id=window.localStorage['user_id'];
         }
+        $scope.next_packages={};
         _this.getPackages=function(user_id){
             console.log('user_id: '+user_id);
             url={};
             if(user_id===undefined){
                 url=serverConfig.address + 'api/packages';
-            }else{
-                url=serverConfig.address + 'api/packages'+'?user_id='+user_id;
+            }else{//here data passed on user id is the url of next paginated packages
+             /*   if(isNaN(user_id)){
+                    url=user_id;
+                }else{*/
+                    url=serverConfig.address + 'api/packages'+'?user_id='+user_id;
+                /*}*/
             }
             $http.get(url).success(function (response) {
                 $scope.packages={}
@@ -26,6 +31,13 @@ var appControllers = angular.module('starter.controllers', [])
                 console.log($scope.second_packages_row.data[0]);
                 delete $scope.packages;
                 delete break_length;
+
+
+                if(response.meta.pagination.links.next!=undefined){
+                    $scope.next_packages.url=response.meta.pagination.links.next;
+                }else{
+                    $scope.next_packages=undefined;
+                }
             }).error(function (data) {
                 console.log("Some error occurred");
                 console.log(data);
@@ -143,6 +155,15 @@ var appControllers = angular.module('starter.controllers', [])
                 scope: $scope.$new(false),
             });
         };
+
+      /*  $scope.loadMore = function() {
+            console.log($scope.next_packages);
+            _this.getPackages($scope.next_packages.url);
+        };
+console.log($scope.next_packages.url);
+        $scope.$on('$stateChangeSuccess', function() {
+            $scope.loadMore();
+        });*/
 })//End Package Controller
     .controller('registrationController',function($scope,$http,serverConfig,$mdToast,$ionicViewSwitcher,$ionicHistory,$state){
         /**

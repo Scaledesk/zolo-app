@@ -6,12 +6,14 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
     $scope.$on('user_login_logout',function(event,args){
        if(args.message==="user_logged_in"){
            $scope.check();
+           console.log("inside user_logged_in");
            $location.path("app.packages",true);
            //$scope.$emit('user_login_logout', { message: "user_logged_in" });
        }
         if(args.message==="user_logged_out"){
            //$scope.check();
            $scope.dologout();
+            console.log("inside user_logged_out");
             $location.path("app.packages",true);
             //$scope.$emit('user_login_logout', { message: "user_logged_out" });
        }
@@ -45,7 +47,7 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
                 $scope.user_profile.data=undefined;
                 delete window.localStorage['user_id'];
                 console.log("got undefined");
-            })
+            });
             /*$http({
                 method: 'GET',
                 url: serverConfig.address+'api/myProfile?access_token='+window.localStorage['access_token']
@@ -67,12 +69,12 @@ appControllers.controller('menuCtrl', function ($scope, $timeout, $mdUtil, $mdSi
             delete window.localStorage['user_id'];
             console.log("unauthenticated");
         }
-        $scope.dologout=function(){
-            $scope.user_profile.data=undefined;
-            window.localStorage['access_token']=undefined;
-            delete window.localStorage['user_id'];
-            console.log("unauthenticated: do logout");
-        }
+    };
+    $scope.dologout=function(){
+        $scope.user_profile.data=undefined;
+        window.localStorage['access_token']=undefined;
+        delete window.localStorage['user_id'];
+        console.log("unauthenticated: do logout");
     }
     $scope.check();
     //logout function
