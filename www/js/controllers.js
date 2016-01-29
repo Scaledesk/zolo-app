@@ -257,6 +257,7 @@ console.log($scope.next_packages.url);
                 .success(function(zolo_package){
                     $scope.package=zolo_package.data;
                     $scope.package.wished_by_user=zolo_package.meta.wishlist_status;
+                    $scope.package.average_rating= parseFloat($scope.package.average_rating);
                 })
                 //  on some error
                 .error(function(data){

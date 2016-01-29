@@ -56,11 +56,13 @@
                     <i class="fa fa-star" style="margin-right: 10px"></i>
                     <i class="fa fa-star" style="margin-right: 10px"></i>
                     <i class="fa fa-star" style="margin-right: 10px"></i>-->
-                    <span ng-if="package.average_rating===1||package.average_rating>1"></span>
-                    <span ng-if="package.average_rating>1"></span>
-                    <span ng-if="package.average_rating>2"></span>
-                    <span ng-if="package.average_rating>3"></span>
-                    <span ng-if="package.average_rating>4"></span>
+                    <span ng-if="package.average_rating===1||package.average_rating>1">
+                        <i class="fa fa-star" style="margin-right: 10px"></i>
+                    </span>
+                    <span ng-if="package.average_rating>1"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                    <span ng-if="package.average_rating>2"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                    <span ng-if="package.average_rating>3"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                    <span ng-if="package.average_rating>4"><i class="fa fa-star" style="margin-right: 10px"></i></span>
                 </div>
             </div>
             <br/>
