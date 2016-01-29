@@ -67,11 +67,11 @@
                         <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
 
                         <!--wishlist icon-->
-                        <span  ng-if="package.wished_by_user==='yes'" class="pin-footer text-left" style="float:right;margin-right: 20px;color: red;" ng-click="removefromWishlist(package.id)(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
-                        <span ng-if="package.wished_by_user==='no'" class="pin-footer text-left" style="float:right;margin-right: 20px;" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
-                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="float:right;margin-right: 20px;" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span  ng-if="package.wished_by_user==='yes'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="removefromWishlist(package.id)(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
+                        <span ng-if="package.wished_by_user==='no'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
                         <!--collection icon-->
-                        <span class="pin-footer text-left" style="float:right;margin-right: 20px;"><i class="fa fa-star-o"></i></span>
+                        <span class="pin-footer text-left" style="float:right;margin-right:12px;margin-left: 0px;margin-top: 0px;"><i class="fa fa-star-o"></i></span>
                     </div>
                 </div><!--end pin section-->
             </div>
@@ -90,11 +90,11 @@
                         &#8377;<span class="pin-footer text-left font-sale">{{package.price}}</span>
                         <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
                         <!--wishlist icon-->
-                        <span  ng-if="package.wished_by_user==='yes'" class="pin-footer text-left" style="float:right;margin-right: 20px;color: red;" ng-click="removefromWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
-                        <span ng-if="package.wished_by_user==='no'" class="pin-footer text-left" style="float:right;margin-right: 20px;" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
-                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="float:right;margin-right: 20px;" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span  ng-if="package.wished_by_user==='yes'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="removefromWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
+                        <span ng-if="package.wished_by_user==='no'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
                         <!--collection icon-->
-                        <span class="pin-footer text-left" style="float:right;margin-right: 20px;"><i class="fa fa-star-o"></i></span>
+                        <span class="pin-footer text-left" style="float:right;margin-right:12px;margin-left: 0px;margin-top: 0px;"><i class="fa fa-star-o"></i></span>
                     </div>
                 </div><!--end pin section-->
             </div>
@@ -124,10 +124,10 @@
             <md-list>
                 <md-list-item>
                     <div class="col text-left">
-                        <a ng-href="/#/app/signIn" class="md-raised md-button md-default-theme material-background" style="color: #fff">LOG IN</a>
+                        <a ng-click="navigateTo('app.signIn')" class="md-raised md-button md-default-theme material-background" style="color: #fff">LOG IN</a>
                     </div>
                     <div class="col text-right">
-                        <a ng-href="/#/app/register" class="md-raised md-button md-default-theme material-background" style="color: #fff">SIGN UP</a>
+                        <a ng-click="navigateTo('app.register')" class="md-raised md-button md-default-theme material-background" style="color: #fff">SIGN UP</a>
                     </div>
                 </md-list-item>
             </md-list>

@@ -18,17 +18,55 @@
         <md-card id="product-detail-tab-detail">
             <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <div style="align:right ;"><a  class="md-button md-accent md-fab fab-toolbar-medium"
-               aria-label="showListBottomSheet" ng-click="sharedProduct1($event)">
+               aria-label="showListBottomSheet" ng-click="shareProduct2($event)">
                 <i class="ion-android-share-alt"></i>
             </a></div>
             <md-card-content>
                <b><h2 style="text-align: justify;" class="md-title">{{package.name}}</h2></b>
-               <h4 style="color: green">&#8377; {{package.deal_price}}</h4><br/>
+                &#8377;<span class="pin-footer text-left" ><h4 style="color: green;display: inline">{{package.deal_price}}</h4>&nbsp;&nbsp;<span class="font-sale"><h4 style="display: inline">{{package.price}}</h4> </span></span>
+               <br/>
+                <hr/>
+                <div class="row">
+                    <div class="col text-left grid-pdp">
 
+                        <!--wishlist icon-->
+                        <span  ng-if="package.wished_by_user===true" class="pin-footer text-left" style=" color:red; margin-right: 10px" ng-click="removefromWishlist(package.id)(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
+                        <span ng-if="package.wished_by_user===false" class="pin-footer text-left" style="margin-right: 10px" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="margin-right: 10px" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <!--<i class="fa fa-heart-o" style="margin-right: 10px"></i>--><strong>Wishlist</strong>
+                    </div>
+                    <div class="col text-right grid-pdp">
+                        <i class="fa fa-clock-o" style="margin-right: 10px"></i><strong>{{package.delivery_time}}&nbsp;{{package.delivery_time_type}}&nbsp;Delivery</strong>
+                    </div>
+                </div>
+                <h4>Description</h4>
                 <p style="font-size: 15px; text-align: justify;">
                     {{package.description| htmlToPlaintextTruncate:package.description.length}}
                 </p>
+                <br/>
+                <hr/>
             </md-card-content>
+            <div class="row md-whiteframe-z1">
+                <div class="col text-left grid-pdp">
+                    <strong>Turn Around Time</strong>
+                </div>
+                <div class="col text-right grid-pdp">
+                    <i class="fa fa-star" style="margin-right: 10px"></i>
+                    <i class="fa fa-star" style="margin-right: 10px"></i>
+                    <i class="fa fa-star" style="margin-right: 10px"></i>
+                    <i class="fa fa-star" style="margin-right: 10px"></i>
+                    <i class="fa fa-star" style="margin-right: 10px"></i>
+                </div>
+            </div>
+            <br/>
+            <div class="row md-whiteframe-z1">
+                <div class="col text-left grid-pdp" style="border-top: none">
+                    <strong>Seller Info</strong>
+                </div>
+                <div class="col text-right grid-pdp" style="border-top: none">
+                    <strong>{{package.seller_name}}</strong>
+                </div>
+            </div>
             <!--<div class="md-actions" layout="row" layout-align="end center">
                 <a href="" class="md-button md-default-theme">Action 1</a>
                 <a href="" class="md-raised md-button md-default-theme material-background">Button</a>
@@ -76,9 +114,9 @@
         </div>
     </ion-footer-bar>
     <!--angular template section-->
-    <script type="text/ng-template" id="bottom-sheet-shared.html">
+    <!--<script type="text/ng-template" id="bottom-sheet-shared.html">
         <md-bottom-sheet class="md-grid">
-            <!--list section-->
+            &lt;!&ndash;list section&ndash;&gt;
             <md-list id="bottom-sheet-grid-md-list">
                 <md-list-item>
                     <a class="md-grid-item-content" ng-click="sharedFacebook()">
@@ -111,8 +149,67 @@
                         <div class="md-grid-text"> More</div>
                     </a>
                 </md-list-item>
-            </md-list> <!--end list section-->
+            </md-list> &lt;!&ndash;end list section&ndash;&gt;
+        </md-bottom-sheet>
+    </script>-->
+    <!--end angular template section-->
+    <script type="text/ng-template" id="ui-grid-bottom-sheet-template">
+        <md-bottom-sheet class="md-grid">
+            <!--list section-->
+            <md-list id="bottom-sheet-grid-md-list">
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="closeListBottomSheet()">
+                        <md-icon md-svg-src="facebook"></md-icon>
+                        <div class="md-grid-text"> Facebook</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="closeListBottomSheet()">
+                        <md-icon md-svg-src="twitter"></md-icon>
+                        <div class="md-grid-text"> Twitter</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="closeListBottomSheet()">
+                        <md-icon md-svg-src="mail"></md-icon>
+                        <div class="md-grid-text"> Mail</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="closeListBottomSheet()">
+                        <i class="ion-android-image"></i>
+
+                        <div class="md-grid-text"> Save Image</div>
+                    </a>
+                </md-list-item>
+                <md-list-item>
+                    <a class="md-grid-item-content" ng-click="closeListBottomSheet()">
+                        <md-icon md-svg-src="share-arrow"></md-icon>
+                        <div class="md-grid-text"> More</div>
+                    </a>
+                </md-list-item>
+            </md-list>
+            <!--end list section-->
         </md-bottom-sheet>
     </script>
     <!--end angular template section-->
+    <script type="text/ng-template" id="ui-list-bottom-sheet-template">
+        <md-bottom-sheet class="md-list md-has-header">
+            <h1 class="md-bottom-sheet-header text-center"><i class="fa fa-heart-o"></i> Login to add to Wishlist</h1>
+            <hr>
+            <!--list section-->
+            <md-list>
+                <md-list-item>
+                    <div class="col text-left">
+                        <a ng-click="navigateTo('app.signIn')" class="md-raised md-button md-default-theme material-background" style="color: #fff">LOG IN</a>
+                    </div>
+                    <div class="col text-right">
+                        <a ng-click="navigateTo('app.register')" class="md-raised md-button md-default-theme material-background" style="color: #fff">SIGN UP</a>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+            <!--end list section-->
+        </md-bottom-sheet>
+    </script>
 </ion-view>

@@ -93,6 +93,15 @@ var appControllers = angular.module('starter.controllers', [])
                 targetEvent: $event,
             });
         };// End sharedProduct.
+        //top up share open
+        $scope.shareProduct2 = function ($event) {
+            console.log("inside");
+            $mdBottomSheet.show({
+                templateUrl: 'ui-grid-bottom-sheet-template',
+                targetEvent: $event,
+                scope: $scope.$new(false),
+            });
+        };// End of showGridBottomSheet.
         $scope.addToWishlist=function(package_id){
              user_id1=window.localStorage['user_id'];
             data={'user_id' : user_id1,'package_id' : package_id};
@@ -217,7 +226,8 @@ console.log($scope.next_packages.url);
         }; // End of navigateTo.
     })//end Registration Controller
     //packageDisplayController
-    .controller('packageDisplayController',function($scope,$stateParams,$ionicViewSwitcher,$ionicHistory,$http,serverConfig,$mdToast,$state){
+    .controller('packageDisplayController',function($scope,$stateParams,$ionicViewSwitcher,$ionicHistory,$http,serverConfig,$mdToast,$state,$mdBottomSheet,$auth){
+        var _this=this;
         $scope.navigateTo = function (stateName,objectData,category_id) {
             if ($ionicHistory.currentStateName() != stateName) {
                 $ionicHistory.nextViewOptions({
@@ -234,21 +244,30 @@ console.log($scope.next_packages.url);
                 });
             }
         }; // End of navigateTo.
-        id=$stateParams.id
-        $http({
-            method: 'GET',
-            url: serverConfig.address+'api/package/'+id
-        })//on success
-            .success(function(zolo_package){
-            $scope.package=zolo_package.data;
-            })
-            //  on some error
-            .error(function(data){
-                $scope.showToast("top","Some error occurred, try Again");
-                $scope.package=undefined;
-                console.log(data);
-            });
+        function getPackage(){
+            id=$stateParams.id
+            url=serverConfig.address+'api/package/'+id;
+            if($auth.isAuthenticated()){
+                url=serverConfig.address+'api/package/'+id+"?user_id="+window.localStorage['user_id']
+            }
+            $http({
+                method: 'GET',
+                url: url
+            })//on success
+                .success(function(zolo_package){
+                    $scope.package=zolo_package.data;
+                    $scope.package.wished_by_user=zolo_package.meta.wishlist_status;
+                })
+                //  on some error
+                .error(function(data){
+                    $scope.showToast("top","Some error occurred, try Again");
+                    $scope.package=undefined;
+                    console.log(data);
+                });
+        }
+        getPackage();
         delete id;
+        delete url;
         $scope.from=$stateParams.from;
         $scope.category_id=$stateParams.category_id;
         $scope.showToast = function (toastPosition,action) {
@@ -264,6 +283,55 @@ console.log($scope.next_packages.url);
                 }
             });
         }; // End of showToast.
+        $scope.addToWishlist=function(package_id){
+            user_id1=window.localStorage['user_id'];
+            data={'user_id' : user_id1,'package_id' : package_id};
+            console.log(data);
+            $http.post(serverConfig.address+'api/wishPackage',data).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                $scope.showToast("top","package add to wishlist successfully");
+                if($auth.isAuthenticated()){
+                    getPackage();
+                }else{
+                    getPackage();
+                }
+                console.log(response);
+                delete user_id;
+                delete data;
+                // when the response is available
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                _this.showToast("top","Some error occurred try again");
+                console.log(response);
+                delete user_id;
+                delete data;
+            });
+        };
+        $scope.removefromWishlist=function(package_id){
+            $http.put(serverConfig.address+'api/removeWishPackage',{'user_id' : window.localStorage['user_id'],'package_id' : package_id}).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                $scope.showToast("top","package removed from wishlist successfully");
+                if($auth.isAuthenticated()){
+                    getPackage();
+                }else{
+                    getPackage();
+                }
+                // when the response is available
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                _this.showToast("top","Some error occurred try again");
+            });
+        };
+        //open dialog box from below
+        $scope.showListBottomSheet = function ($event) {
+            $mdBottomSheet.show({
+                templateUrl: 'ui-list-bottom-sheet-template',
+                targetEvent: $event,
+                scope: $scope.$new(false),
+            });
+        };
     })//end PackageDisplayController
     .controller('mainWalkthrough',function($scope,$location,$ionicViewSwitcher,$ionicHistory,$state){
         $scope.navigateTo = function (stateName,objectData) {
