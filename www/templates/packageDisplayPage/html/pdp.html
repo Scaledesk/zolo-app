@@ -46,20 +46,25 @@
                 <br/>
                 <hr/>
             </md-card-content>
-            <div class="row md-whiteframe-z1">
+            <div class="row">
                 <div class="col text-left grid-pdp">
                     <strong>Turn Around Time</strong>
                 </div>
                 <div class="col text-right grid-pdp">
+
+                  <!--  <i class="fa fa-star" style="margin-right: 10px"></i>
                     <i class="fa fa-star" style="margin-right: 10px"></i>
                     <i class="fa fa-star" style="margin-right: 10px"></i>
-                    <i class="fa fa-star" style="margin-right: 10px"></i>
-                    <i class="fa fa-star" style="margin-right: 10px"></i>
-                    <i class="fa fa-star" style="margin-right: 10px"></i>
+                    <i class="fa fa-star" style="margin-right: 10px"></i>-->
+                    <span ng-if="package.average_rating===1||package.average_rating>1"></span>
+                    <span ng-if="package.average_rating>1"></span>
+                    <span ng-if="package.average_rating>2"></span>
+                    <span ng-if="package.average_rating>3"></span>
+                    <span ng-if="package.average_rating>4"></span>
                 </div>
             </div>
             <br/>
-            <div class="row md-whiteframe-z1">
+            <div class="row">
                 <div class="col text-left grid-pdp" style="border-top: none">
                     <strong>Seller Info</strong>
                 </div>
